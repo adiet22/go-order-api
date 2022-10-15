@@ -3,10 +3,21 @@ Simple app product order
 
 ## 🔗 Description
 
-This Backend Application is used for login & register in this application there are several features such as JWT, Validation email just for checking email type, Testing, Hasing password .etc
+This Backend Application is used for simple order product, in this application there are two models / ERD Schema likes User / Costumer & Products.
+Also have several features like JWT, Authentification & Authorization.
+There are 3 main modules :
+1. Customer Management (Get with paginate, Get Detail, Insert, Update, Delete,
+Search)
+2. Order Management (Get with paginate, Get Detail, Insert, Update, Delete,
+Search)
+3. Authentikasi Management (Get Login Data, Insert Login Data)
 
-I'am using UUID for user_id, don't forget to create extenxion in SQL console after create the database with this query below :
+Notes :
+1. I'am using UUID for user_id, don't forget to create extenxion in SQL console after create the database with this query below :
 - CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+2. In this application there are two types of users (Roles). admins and costumer. admin can do *Costumer Management* but Role Costumer can't
+- Admins can only be registered through seeding data. Registration page can only register user roles
+
 
 ## Several command you must know in this app :
 ```bash
