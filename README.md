@@ -24,7 +24,8 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 ```bash
 go run . seed
 ```
-
+## ERD (Entity Relation Database)
+https://res.cloudinary.com/dw5qffbop/image/upload/v1665874871/erd_c15gne.png
 ## POST /login
 _Purpose to login as Admin's Role_
 ```
