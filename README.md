@@ -25,6 +25,15 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 go run . seed
 ```
 
+## POST /login
+_Purpose to login as Admin's Role_
+```
+{
+  "email": "admin@gmail.com",
+  "password": "admin12345678"
+}
+```
+
 ## Several command you must know in this app :
 ```bash
 1. go run . serve //to run the app / server
