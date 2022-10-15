@@ -17,9 +17,10 @@ Notes :
 - CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 2. In this application there are two types of users (Roles). admins and costumer. 
    Admin can do *Costumer Management* but Role Costumer can't, Registration page can only register Costumer roles, Admins can only be registered through seeding data with this command below :
-   ```bash
-  go run . seed
-  ```
+
+```bash
+go run . seed
+```
 
 ## Several command you must know in this app :
 ```bash
