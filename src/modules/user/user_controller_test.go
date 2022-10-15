@@ -4,7 +4,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/adiet95/go-order-api/src/database"
+	"github.com/adiet95/go-order-api/src/database/models"
 	"github.com/adiet95/go-order-api/src/libs"
 	"github.com/gorilla/mux"
 	"github.com/stretchr/testify/assert"
@@ -20,8 +20,8 @@ func TestCtrlRegister(t *testing.T) {
 	mux := mux.NewRouter()
 
 	pass, _ := libs.HashPassword("user12345678")
-	var dataMock = database.User{Email: "user2@gmail.com", Password: "user12345678"}
-	var dataMocks = database.User{Email: "user2@gmail.com", Password: pass}
+	var dataMock = models.User{Email: "user2@gmail.com", Password: "user12345678"}
+	var dataMocks = models.User{Email: "user2@gmail.com", Password: pass}
 
 	repo.mock.On("RegisterEmail", &dataMock).Return(&dataMocks, nil)
 
@@ -31,7 +31,7 @@ func TestCtrlRegister(t *testing.T) {
 
 	mux.ServeHTTP(w, req)
 
-	var user *database.User
+	var user *models.User
 	respon := libs.Response{
 		Data: &user,
 	}

@@ -25,7 +25,7 @@ func server(cmd *cobra.Command, args []string) error {
 		originsOk := handlers.AllowedOrigins([]string{"http://localhost:3000/"})
 		methodsOk := handlers.AllowedMethods([]string{"GET", "HEAD", "POST", "PUT", "OPTIONS"})
 
-		fmt.Println("Gologin is running on PORT", addrs)
+		fmt.Println("Go-Order is running on PORT", addrs)
 		log.Fatal(http.ListenAndServe(addrs, handlers.CORS(originsOk, headersOk, methodsOk)(mainRoute)))
 		return nil
 	} else {

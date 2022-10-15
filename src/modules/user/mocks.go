@@ -1,7 +1,7 @@
 package user
 
 import (
-	"github.com/adiet95/go-order-api/src/database"
+	"github.com/adiet95/go-order-api/src/database/models"
 	"github.com/stretchr/testify/mock"
 )
 
@@ -9,12 +9,12 @@ type RepoMock struct {
 	mock mock.Mock
 }
 
-func (m *RepoMock) FindByEmail(email string) (*database.User, error) {
+func (m *RepoMock) FindByEmail(email string) (*models.User, error) {
 	args := m.mock.Called(email)
-	return args.Get(0).(*database.User), nil
+	return args.Get(0).(*models.User), nil
 }
 
-func (m *RepoMock) RegisterEmail(data *database.User) (*database.User, error) {
+func (m *RepoMock) RegisterEmail(data *models.User) (*models.User, error) {
 	args := m.mock.Called(data)
-	return args.Get(0).(*database.User), nil
+	return args.Get(0).(*models.User), nil
 }

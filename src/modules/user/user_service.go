@@ -3,7 +3,7 @@ package user
 import (
 	"net/http"
 
-	"github.com/adiet95/go-order-api/src/database"
+	"github.com/adiet95/go-order-api/src/database/models"
 	"github.com/adiet95/go-order-api/src/interfaces"
 	"github.com/adiet95/go-order-api/src/libs"
 )
@@ -19,7 +19,7 @@ func NewService(reps interfaces.UserRepo) *user_service {
 	return &user_service{reps}
 }
 
-func (u user_service) Login(body database.User, w http.ResponseWriter) *libs.Response {
+func (u user_service) Login(body models.User, w http.ResponseWriter) *libs.Response {
 	checkRegist := libs.Validation(body.Email, body.Password)
 	if checkRegist != nil {
 		return libs.New(checkRegist.Error(), 400, true)
@@ -42,7 +42,7 @@ func (u user_service) Login(body database.User, w http.ResponseWriter) *libs.Res
 	return libs.New(token_response{Tokens: theToken}, 200, false)
 }
 
-func (u user_service) Register(body *database.User) *libs.Response {
+func (u user_service) Register(body *models.User) *libs.Response {
 	checkRegist := libs.Validation(body.Email, body.Password)
 	if checkRegist != nil {
 		return libs.New(checkRegist.Error(), 400, true)

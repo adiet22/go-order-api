@@ -3,6 +3,7 @@ package database
 import (
 	"log"
 
+	"github.com/adiet95/go-order-api/src/database/models"
 	"github.com/go-gormigrate/gormigrate/v2"
 	"github.com/spf13/cobra"
 	"gorm.io/gorm"
@@ -32,10 +33,10 @@ func dbMigrate(cmd *cobra.Command, args []string) error {
 		{
 			ID: "001",
 			Migrate: func(tx *gorm.DB) error {
-				return tx.AutoMigrate(&User{})
+				return tx.AutoMigrate(&models.User{})
 			},
 			Rollback: func(tx *gorm.DB) error {
-				return tx.Migrator().DropTable(&User{})
+				return tx.Migrator().DropTable(&models.User{})
 			},
 		},
 	})

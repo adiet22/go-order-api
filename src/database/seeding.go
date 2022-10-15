@@ -3,6 +3,7 @@ package database
 import (
 	"log"
 
+	"github.com/adiet95/go-order-api/src/database/models"
 	"github.com/adiet95/go-order-api/src/libs"
 	"github.com/spf13/cobra"
 )
@@ -21,7 +22,7 @@ func seeder(cmd *cobra.Command, args []string) error {
 	admin, _ := libs.HashPassword("admin12345678")
 	user, _ := libs.HashPassword("user12345678")
 
-	var datas = []User{
+	var datas = []models.User{
 		{Email: "admin@gmail.com", Password: admin, Role: "admin"},
 		{Email: "user@gmail.com", Password: user, Role: "user"},
 	}

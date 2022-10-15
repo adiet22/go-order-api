@@ -1,9 +1,6 @@
 # go-order-api
 Simple app product order
 
-# go-order-api
-Aim to create login &amp; regist with Go
-
 ## 🔗 Description
 
 This Backend Application is used for login & register in this application there are several features such as JWT, Validation email just for checking email type, Testing, Hasing password .etc
@@ -35,13 +32,13 @@ go get -u ./...
 # or
 go mod tidy
 ```
-
-3. Run the app
+3. Database Migration and Rollback
 
 ```bash
-go run . serve
+go run main.go migrate --up //for database migration
+# or
+go run main.go migrate --down //for rollback
 ```
-
 4. Add Env
 
 ```sh
@@ -52,13 +49,10 @@ go run . serve
   JWT_KEYS = Your JWT Key
   PORT = Your Port
 ```
-
-5. Database Migration and Rollback
+5. Run the app
 
 ```bash
-go run main.go migrate --up //for database migration
-# or
-go run main.go migrate --down //for rollback
+go run . serve
 ```
 
 ## 🔗 RESTful endpoints

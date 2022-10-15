@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/adiet95/go-order-api/src/database"
+	"github.com/adiet95/go-order-api/src/database/models"
 	"github.com/adiet95/go-order-api/src/interfaces"
 	"github.com/adiet95/go-order-api/src/libs"
 )
@@ -18,7 +18,7 @@ func NewCtrl(reps interfaces.UserService) *user_ctrl {
 }
 
 func (u *user_ctrl) SignIn(w http.ResponseWriter, r *http.Request) {
-	var data database.User
+	var data models.User
 
 	err := json.NewDecoder(r.Body).Decode(&data)
 	if err != nil {
@@ -30,7 +30,7 @@ func (u *user_ctrl) SignIn(w http.ResponseWriter, r *http.Request) {
 }
 
 func (u *user_ctrl) Register(w http.ResponseWriter, r *http.Request) {
-	var data *database.User
+	var data *models.User
 
 	err := json.NewDecoder(r.Body).Decode(&data)
 	if err != nil {

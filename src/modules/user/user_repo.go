@@ -3,7 +3,7 @@ package user
 import (
 	"errors"
 
-	"github.com/adiet95/go-order-api/src/database"
+	"github.com/adiet95/go-order-api/src/database/models"
 	"gorm.io/gorm"
 )
 
@@ -15,9 +15,9 @@ func NewRepo(db *gorm.DB) *user_repo {
 	return &user_repo{db}
 }
 
-func (re *user_repo) FindByEmail(email string) (*database.User, error) {
-	var data *database.User
-	var datas *database.Users
+func (re *user_repo) FindByEmail(email string) (*models.User, error) {
+	var data *models.User
+	var datas *models.Users
 
 	res := re.db.Model(&datas).Where("email = ?", email).Find(&data)
 	if res.Error != nil {
@@ -29,8 +29,8 @@ func (re *user_repo) FindByEmail(email string) (*database.User, error) {
 	return data, nil
 }
 
-func (re *user_repo) RegisterEmail(data *database.User) (*database.User, error) {
-	var datas *database.Users
+func (re *user_repo) RegisterEmail(data *models.User) (*models.User, error) {
+	var datas *models.Users
 
 	res := re.db.Model(&datas).Where("email = ?", data.Email).Find(&data)
 	if res.Error != nil {
