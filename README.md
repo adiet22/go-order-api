@@ -24,9 +24,8 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 ```bash
 go run . seed
 ```
-## ERD (Entity Relation Database)
 <h1 align="center">
-  Go-Order-API RESTfull API With Gorilla/mux, Gorm
+ ERD (Entity Relation Database)
 </h1>
 <p align="center"><img src="https://res.cloudinary.com/dw5qffbop/image/upload/v1665874871/erd_c15gne.png" alt="erd.jpg" /></p>
 
