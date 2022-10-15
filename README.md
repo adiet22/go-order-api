@@ -16,8 +16,8 @@ Notes :
 1. I'am using UUID for user_id, don't forget to create extenxion in SQL console after create the database with this query below :
 - CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 2. In this application there are two types of users (Roles). admins and costumer. admin can do *Costumer Management* but Role Costumer can't
-- Admins can only be registered through seeding data. Registration page can only register user roles
-
+  Registration page can only register user roles, Admins can only be registered through seeding data with this command below :
+  - go run . seed
 
 ## Several command you must know in this app :
 ```bash
