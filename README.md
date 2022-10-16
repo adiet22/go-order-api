@@ -34,10 +34,20 @@ _Purpose to login as Admin's Role_
 }
 ```
 
-<h1 align="center">
+<h2 align="center">
  ERD (Entity Relation Database)
-</h1>
+</h2>
 <p align="center"><img src="https://res.cloudinary.com/dw5qffbop/image/upload/v1665874871/erd_c15gne.png" alt="erd.jpg" /></p>
+
+<h2 align="center">
+ Table Specification
+</h2>
+
+### Costumer Table
+<p align="center"><img src="https://res.cloudinary.com/dw5qffbop/image/upload/v1665882605/table-cost_miwqjk.png" alt="cost.jpg" /></p>
+
+### Order Table
+<p align="center"><img src="https://res.cloudinary.com/dw5qffbop/image/upload/v1665882605/table-user_sz493j.png" alt="order.jpg" /></p>
 
 ## Several command you must know in this app :
 ```bash
