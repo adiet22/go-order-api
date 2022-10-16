@@ -138,7 +138,7 @@ _Request Body_
 ```
 not needed
 ```
-_Request Params_
+_Request Query Params_
 ```
 limit = (limit for pagination)
 offset = (offset for pagination)
@@ -163,7 +163,7 @@ _Request Body_
     "phone" : "(STRING)"
 }
 ```
-_Request Params_
+_Request Query Params_
 ```
 no need
 ```
@@ -187,7 +187,7 @@ _Request Body_
     "phone" : "(STRING)"
 }
 ```
-_Request Params_
+_Request Query Params_
 ```
 no need
 ```
@@ -205,7 +205,7 @@ _Request Body_
 ```
 no need
 ```
-_Request Params_
+_Request Query Params_
 ```
 email = (Delete by email)
 ```
@@ -223,7 +223,7 @@ _Request Body_
 ```
 no need
 ```
-_Request Params_
+_Request Query Params_
 ```
 email = (Get detail data by email)
 ```
@@ -241,7 +241,7 @@ _Request Body_
 ```
 no need
 ```
-_Request Params_
+_Request Query Params_
 ```
 name = (Search data by full_name)
 ```
@@ -259,7 +259,7 @@ _Request Body_
 ```
 not needed
 ```
-_Request Params_
+_Request Query Params_
 ```
 limit = (limit for pagination)
 offset = (offset for pagination)
@@ -286,7 +286,7 @@ _Request Body_
     "status" : "paid"
 }
 ```
-_Request Params_
+_Request Query Params_
 ```
 no need
 ```
@@ -312,7 +312,7 @@ _Request Body_
     "status" : "paid"
 }
 ```
-_Request Params_
+_Request Query Params_
 ```
 id = (id you want to update)
 ```
@@ -330,7 +330,7 @@ _Request Body_
 ```
 no need
 ```
-_Request Params_
+_Request Query Params_
 ```
 id = (Delete by id)
 ```
@@ -348,7 +348,7 @@ _Request Body_
 ```
 no need
 ```
-_Request Params_
+_Request Query Params_
 ```
 id = (Get detail data by id)
 ```
@@ -366,7 +366,7 @@ _Request Body_
 ```
 no need
 ```
-_Request Params_
+_Request Query Params_
 ```
 name = (Search data by name)
 ```
