@@ -1,4 +1,4 @@
-package user
+package auth
 
 import (
 	"net/http"
@@ -8,18 +8,18 @@ import (
 	"github.com/adiet95/go-order-api/src/libs"
 )
 
-type user_service struct {
-	repo interfaces.UserRepo
+type auth_service struct {
+	repo interfaces.AuthRepo
 }
 type token_response struct {
 	Tokens string `json:"token"`
 }
 
-func NewService(reps interfaces.UserRepo) *user_service {
-	return &user_service{reps}
+func NewService(reps interfaces.AuthRepo) *auth_service {
+	return &auth_service{reps}
 }
 
-func (u user_service) Login(body models.User, w http.ResponseWriter) *libs.Response {
+func (u auth_service) Login(body models.User, w http.ResponseWriter) *libs.Response {
 	checkRegist := libs.Validation(body.Email, body.Password)
 	if checkRegist != nil {
 		return libs.New(checkRegist.Error(), 400, true)
@@ -42,7 +42,7 @@ func (u user_service) Login(body models.User, w http.ResponseWriter) *libs.Respo
 	return libs.New(token_response{Tokens: theToken}, 200, false)
 }
 
-func (u user_service) Register(body *models.User) *libs.Response {
+func (u auth_service) Register(body *models.User) *libs.Response {
 	checkRegist := libs.Validation(body.Email, body.Password)
 	if checkRegist != nil {
 		return libs.New(checkRegist.Error(), 400, true)

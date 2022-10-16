@@ -5,7 +5,9 @@ import (
 	"net/http"
 
 	"github.com/adiet95/go-order-api/src/database"
-	user "github.com/adiet95/go-order-api/src/modules/user"
+	auth "github.com/adiet95/go-order-api/src/modules/auth"
+	"github.com/adiet95/go-order-api/src/modules/order"
+	"github.com/adiet95/go-order-api/src/modules/users"
 	"github.com/gorilla/mux"
 )
 
@@ -21,7 +23,9 @@ func New() (*mux.Router, error) {
 		return nil, errors.New("failed init database")
 	}
 
-	user.New(mainRoute, db)
+	auth.New(mainRoute, db)
+	users.New(mainRoute, db)
+	order.New(mainRoute, db)
 
 	return mainRoute, nil
 }

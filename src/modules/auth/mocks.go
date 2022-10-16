@@ -1,4 +1,4 @@
-package user
+package auth
 
 import (
 	"github.com/adiet95/go-order-api/src/database/models"

@@ -1,4 +1,4 @@
-package user
+package auth
 
 import (
 	"encoding/json"
@@ -10,10 +10,10 @@ import (
 )
 
 type user_ctrl struct {
-	repo interfaces.UserService
+	repo interfaces.AuthService
 }
 
-func NewCtrl(reps interfaces.UserService) *user_ctrl {
+func NewCtrl(reps interfaces.AuthService) *user_ctrl {
 	return &user_ctrl{reps}
 }
 

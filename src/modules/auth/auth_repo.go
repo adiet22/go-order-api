@@ -1,4 +1,4 @@
-package user
+package auth
 
 import (
 	"errors"
@@ -7,15 +7,15 @@ import (
 	"gorm.io/gorm"
 )
 
-type user_repo struct {
+type auth_repo struct {
 	db *gorm.DB
 }
 
-func NewRepo(db *gorm.DB) *user_repo {
-	return &user_repo{db}
+func NewRepo(db *gorm.DB) *auth_repo {
+	return &auth_repo{db}
 }
 
-func (re *user_repo) FindByEmail(email string) (*models.User, error) {
+func (re *auth_repo) FindByEmail(email string) (*models.User, error) {
 	var data *models.User
 	var datas *models.Users
 
@@ -29,7 +29,7 @@ func (re *user_repo) FindByEmail(email string) (*models.User, error) {
 	return data, nil
 }
 
-func (re *user_repo) RegisterEmail(data *models.User) (*models.User, error) {
+func (re *auth_repo) RegisterEmail(data *models.User) (*models.User, error) {
 	var datas *models.Users
 
 	res := re.db.Model(&datas).Where("email = ?", data.Email).Find(&data)

@@ -1,18 +1,24 @@
 package interfaces
 
 import (
-	"net/http"
-
 	"github.com/adiet95/go-order-api/src/database/models"
 	"github.com/adiet95/go-order-api/src/libs"
 )
 
 type UserRepo interface {
-	FindByEmail(username string) (*models.User, error)
-	RegisterEmail(data *models.User) (*models.User, error)
+	FindAll(limit, offset int) (*models.Users, error)
+	Save(data *models.User) (*models.User, error)
+	UpdateUser(data *models.User, email string) (*models.User, error)
+	DeleteUser(email string) (*models.User, error)
+	FindByEmail(email string) (*models.User, error)
+	FindByName(name string) (*models.Users, error)
 }
 
 type UserService interface {
-	Login(body models.User, w http.ResponseWriter) *libs.Response
-	Register(body *models.User) *libs.Response
+	Add(data *models.User) *libs.Response
+	Update(data *models.User, email string) *libs.Response
+	Delete(email string) *libs.Response
+	FindEmail(email string, limit, offset int) *libs.Response
+	Search(email string) *libs.Response
+	SearchName(name string) *libs.Response
 }
