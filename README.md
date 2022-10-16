@@ -43,10 +43,9 @@ _Purpose to login as Admin's Role_
  Table Specification
 </h2>
 
-### Costumer Table
+<h2 align="center">Costumer's Table</h2>
 <p align="center"><img src="https://res.cloudinary.com/dw5qffbop/image/upload/v1665882605/table-cost_miwqjk.png" alt="cost.jpg" /></p>
-
-### Order Table
+<h2 align="center">Order's Table</h2>
 <p align="center"><img src="https://res.cloudinary.com/dw5qffbop/image/upload/v1665882605/table-user_sz493j.png" alt="order.jpg" /></p>
 
 ## Several command you must know in this app :
