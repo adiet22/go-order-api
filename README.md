@@ -24,10 +24,6 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 ```bash
 go run . seed
 ```
-<h1 align="center">
- ERD (Entity Relation Database)
-</h1>
-<p align="center"><img src="https://res.cloudinary.com/dw5qffbop/image/upload/v1665874871/erd_c15gne.png" alt="erd.jpg" /></p>
 
 ## POST /login
 _Purpose to login as Admin's Role_
@@ -37,6 +33,11 @@ _Purpose to login as Admin's Role_
   "password": "admin12345678"
 }
 ```
+
+<h1 align="center">
+ ERD (Entity Relation Database)
+</h1>
+<p align="center"><img src="https://res.cloudinary.com/dw5qffbop/image/upload/v1665874871/erd_c15gne.png" alt="erd.jpg" /></p>
 
 ## Several command you must know in this app :
 ```bash
@@ -99,47 +100,11 @@ _Request Body_
 ```
 {
   "user_name": <your username> (STRING),
+  "full_name": <your username> (STRING),
   "email": <your email> (STRING),
   "password": <your password> (STRING),
   "address": <your address> (STRING),
   "phone": <your phone> (STRING)
-}
-```
-
-#### Success Response: ####
-_Response (201 - Created)_
-```
-{
-  "id": <id>,
-  "user_name": <your username>,
-  "email": <your email>,
-  "password": <your encrypted password>,
-  "address": <your address>,
-  "phone": <your phone>,
-  "updatedAt": <date>,
-  "createdAt": <date>
-}
-```
-
-#### Error Response: ####
-_Response (400 - Bad Request)_
-```
-[
-  "message": <detail message>
-]
-```
-
-_Response (409 - conflict)_
-```
-{
-  "message": "Email Already registered!"
-}
-```
-
-_Response (500 - Internal Server Error)_
-```
-{
-  "message": "Internal Server Error"
 }
 ```
 
@@ -160,35 +125,250 @@ _Request Body_
 }
 ```
 
-#### Success Response: ####
-_Response (200 - Ok)_
+### GET /user
+
+> Get Data Costumer
+
+_Request Header_
+```
+Bearer Token
+```
+
+_Request Body_
+```
+not needed
+```
+_Request Params_
+```
+limit = (limit for pagination)
+offset = (offset for pagination)
+```
+
+### POST /user
+
+> Post Data Costumer
+
+_Request Header_
+```
+Bearer Token
+```
+
+_Request Body_
 ```
 {
-  "token": <your access token>
+    "email" : "(STRING)",
+    "password" : "(STRING)",
+    "address" : "(STRING)",
+    "full_name" : "(STRING)",
+    "phone" : "(STRING)"
 }
 ```
-
-#### Error Response: ####
-
-_Response (400 - Bad Request)_
+_Request Params_
 ```
-[
-  "message": <detail message>
-]
+no need
 ```
 
-_Response (404 - Not Found)_
+### PUT /user
+
+> Update Data Costumer
+
+_Request Header_
+```
+Bearer Token
+```
+
+_Request Body_
 ```
 {
-  "message": "user not registered!"
+    "email" : "(STRING)",
+    "password" : "(STRING)",
+    "address" : "(STRING)",
+    "full_name" : "(STRING)",
+    "phone" : "(STRING)"
 }
+```
+_Request Params_
+```
+no need
 ```
 
-_Response (500 - Internal Server Error)_
+### DELETE /user
+
+> Delete Data Costumer
+
+_Request Header_
+```
+Bearer Token
+```
+
+_Request Body_
+```
+no need
+```
+_Request Params_
+```
+email = (Delete by email)
+```
+
+### GET /user/detail
+
+> Get Detail Data Costumer Email
+
+_Request Header_
+```
+Bearer Token
+```
+
+_Request Body_
+```
+no need
+```
+_Request Params_
+```
+email = (Get detail data by email)
+```
+
+### GET /user/search
+
+> Search Data Costumer by Full_Name
+
+_Request Header_
+```
+Bearer Token
+```
+
+_Request Body_
+```
+no need
+```
+_Request Params_
+```
+name = (Search data by full_name)
+```
+
+### GET /order
+
+> Get Data Order
+
+_Request Header_
+```
+Bearer Token
+```
+
+_Request Body_
+```
+not needed
+```
+_Request Params_
+```
+limit = (limit for pagination)
+offset = (offset for pagination)
+```
+
+### POST /order
+
+> Post Data Order
+
+_Request Header_
+```
+Bearer Token
+```
+
+_Request Body_
 ```
 {
-  "message": "Internal Server Error"
+    "order_name" : "Test",
+    "invoice" : "test inv",
+    "address" : "test address",
+    "telphone" : "0813",
+    "amount" : 2,
+    "price" : 10000,
+    "status" : "paid"
 }
+```
+_Request Params_
+```
+no need
+```
+
+### PUT /order
+
+> Update Data Order
+
+_Request Header_
+```
+Bearer Token
+```
+
+_Request Body_
+```
+{
+    "order_name" : "Test",
+    "invoice" : "test inv",
+    "address" : "test address",
+    "telphone" : "0813",
+    "amount" : 2,
+    "price" : 10000,
+    "status" : "paid"
+}
+```
+_Request Params_
+```
+id = (id you want to update)
+```
+
+### DELETE /order
+
+> Delete Data Order
+
+_Request Header_
+```
+Bearer Token
+```
+
+_Request Body_
+```
+no need
+```
+_Request Params_
+```
+id = (Delete by id)
+```
+
+### GET /order/detail
+
+> Get Data Detail by ID
+
+_Request Header_
+```
+Bearer Token
+```
+
+_Request Body_
+```
+no need
+```
+_Request Params_
+```
+id = (Get detail data by id)
+```
+
+### GET /order/search
+
+> Search Data Order by Name
+
+_Request Header_
+```
+Bearer Token
+```
+
+_Request Body_
+```
+no need
+```
+_Request Params_
+```
+name = (Search data by name)
 ```
 
 ## 💻 Built with
