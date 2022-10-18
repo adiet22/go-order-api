@@ -23,7 +23,7 @@ func (u *user_ctrl) SignIn(c *gin.Context) {
 	err := json.NewDecoder(c.Request.Body).Decode(&data)
 	if err != nil {
 		libs.New(err.Error(), 401, true)
-		return
+		c.Abort()
 	}
 
 	u.repo.Login(data).Send(c)
@@ -35,7 +35,7 @@ func (u *user_ctrl) Register(c *gin.Context) {
 	err := json.NewDecoder(c.Request.Body).Decode(&data)
 	if err != nil {
 		libs.New(err.Error(), 401, true)
-		return
+		c.Abort()
 	}
 	u.repo.Register(data).Send(c)
 }

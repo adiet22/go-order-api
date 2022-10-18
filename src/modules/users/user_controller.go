@@ -23,7 +23,7 @@ func (re *user_ctrl) GetAll(c *gin.Context) {
 	claim_user, exist := c.Get("email")
 	if !exist {
 		libs.New("claim user is not exist", 400, true)
-		return
+		c.Abort()
 	}
 
 	v := c.Request.URL.Query().Get("limit")
@@ -41,7 +41,7 @@ func (re *user_ctrl) Add(c *gin.Context) {
 	err := json.NewDecoder(c.Request.Body).Decode(&data)
 	if err != nil {
 		libs.New(err.Error(), 400, true)
-		return
+		c.Abort()
 	}
 	re.svc.Add(&data).Send(c)
 }
@@ -50,14 +50,14 @@ func (re *user_ctrl) Update(c *gin.Context) {
 	claim_user, exist := c.Get("email")
 	if !exist {
 		libs.New("claim user is not exist", 400, true)
-		return
+		c.Abort()
 	}
 
 	var data models.User
 	err := json.NewDecoder(c.Request.Body).Decode(&data)
 	if err != nil {
 		libs.New(err.Error(), 400, true)
-		return
+		c.Abort()
 	}
 
 	re.svc.Update(&data, claim_user.(string)).Send(c)
