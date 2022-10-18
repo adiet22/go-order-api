@@ -1,5 +1,5 @@
-# go-order-api
-Simple app product order
+# Go-Order-API
+Simple app product order with Gin-Gonic HTTP Respons Framework, GORM for Object relation model, PostgreSQL for database.
 
 ## 🔗 Description
 
@@ -19,20 +19,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 ```
 
 2. In this application there are two types of users (Roles). admins and costumer. 
-   Admin can do *Costumer Management* but Role Costumer can't, Registration page can only register Costumer roles, Admins can only be registered through seeding data with this command below :
-
-```bash
-go run . seed
-```
-
-## POST /login
-_Purpose to login as Admin's Role_
-```
-{
-  "email": "admin@gmail.com",
-  "password": "admin12345678"
-}
-```
+   Admin can do *Costumer Management* but Role Costumer can't, Registration page can only register Costumer roles, Admins can only be registered through seeding data.
 
 <h2 align="center">
  ERD (Entity Relation Database)
@@ -59,26 +46,25 @@ go run . migrate -d //for rollback
 
 ## 🛠️ Installation Steps
 
-1. Clone the repository
+1. Make root folder in your Gopath 
+```
+github.com/adiet95/
+```
+
+2. Clone the repository inside the folder that was created "github.com/adiet95/"
 
 ```bash
 git clone git@github.com:adiet95/go-order-api.git
 ```
 
-2. Install dependencies
+3. Install dependencies
 
 ```bash
 go get -u ./...
 # or
 go mod tidy
 ```
-3. Database Migration and Rollback
 
-```bash
-go run main.go migrate --up //for database migration
-# or
-go run main.go migrate --down //for rollback
-```
 4. Add Env
 
 ```sh
@@ -89,22 +75,44 @@ go run main.go migrate --down //for rollback
   JWT_KEYS = Your JWT Key
   PORT = Your Port
 ```
-5. Run the app
+
+5. Database Migration and Rollback
+
+```bash
+go run main.go migrate --up //for database migration table
+# or
+go run main.go migrate --down //for rollback the database
+```
+
+6. Seeding data admin
+
+```bash
+go run . seed
+```
+_Purpose to login as Admin's Role_
+```
+{
+  "email": "admin@gmail.com",
+  "password": "admin12345678"
+}
+```
+
+7. Run the app
 
 ```bash
 go run . serve
 ```
 
+### 🚀 You are all set
+
 ## 🔗 RESTful endpoints
 ### POST /register
 
 > Create new user
-
 _Request Header_
 ```
 not needed
 ```
-
 _Request Body_
 ```
 {
@@ -120,12 +128,10 @@ _Request Body_
 ### POST /login
 
 > Process Login
-
 _Request Header_
 ```
 not needed
 ```
-
 _Request Body_
 ```
 {
@@ -135,14 +141,11 @@ _Request Body_
 ```
 
 ### GET /user
-
 > Get Data Costumer
-
 _Request Header_
 ```
 Bearer Token
 ```
-
 _Request Body_
 ```
 not needed
@@ -154,14 +157,11 @@ offset = (offset for pagination)
 ```
 
 ### POST /user
-
 > Post Data Costumer
-
 _Request Header_
 ```
 Bearer Token
 ```
-
 _Request Body_
 ```
 {
@@ -178,14 +178,11 @@ no need
 ```
 
 ### PUT /user
-
 > Update Data Costumer
-
 _Request Header_
 ```
 Bearer Token
 ```
-
 _Request Body_
 ```
 {
@@ -202,14 +199,11 @@ no need
 ```
 
 ### DELETE /user
-
 > Delete Data Costumer
-
 _Request Header_
 ```
 Bearer Token
 ```
-
 _Request Body_
 ```
 no need
@@ -383,7 +377,7 @@ name = (Search data by name)
 ## 💻 Built with
 
 - [Golang](https://go.dev/): Go Programming Language
-- [gorilla/mux](https://github.com/gorilla/mux): for handle http request
+- [Gin-Gonic](https://gin-gonic.com/): for handle http request
 - [Postgres](https://www.postgresql.org/): for DBMS
 
 
