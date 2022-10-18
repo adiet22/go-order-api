@@ -60,8 +60,6 @@ git clone git@github.com:adiet95/go-order-api.git
 3. Install dependencies
 
 ```bash
-go get -u ./...
-# or
 go mod tidy
 ```
 
