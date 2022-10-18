@@ -1,34 +1,32 @@
 package middleware
 
 import (
-	"context"
-	"net/http"
 	"strings"
 
 	"github.com/adiet95/go-order-api/src/libs"
+	"github.com/gin-gonic/gin"
 )
 
-func CheckAuthor(next http.HandlerFunc) http.HandlerFunc {
-	return func(w http.ResponseWriter, r *http.Request) {
-		headerToken := r.Header.Get("Authorization")
+func CheckAuthor() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		headerToken := c.GetHeader("Authorization")
 
 		if !strings.Contains(headerToken, "Bearer") {
-			libs.New("invalid header type", 401, true).Send(w)
-			return
+			libs.New("invalid header type", 401, true).Send(c)
+			c.Abort()
 		}
 		token := strings.Replace(headerToken, "Bearer ", "", -1)
 
 		checkToken, err := libs.CheckToken(token)
 		if err != nil {
-			libs.New(err.Error(), 401, true).Send(w)
-			return
+			libs.New(err.Error(), 401, true).Send(c)
+			c.Abort()
 		}
 		if checkToken.Role != "admin" {
-			libs.New("forbidden access", 401, true).Send(w)
-			return
+			libs.New("forbidden access", 401, true).Send(c)
+			c.Abort()
 		}
-		ctx := context.WithValue(r.Context(), "role", checkToken.Role)
-		next.ServeHTTP(w, r.WithContext(ctx))
-
+		c.Set("role", checkToken.Role)
+		c.Next()
 	}
 }

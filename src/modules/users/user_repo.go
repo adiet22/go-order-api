@@ -18,7 +18,7 @@ func NewRepo(db *gorm.DB) *user_repo {
 func (r *user_repo) FindAll(limit, offset int) (*models.Users, error) {
 	var data models.Users
 
-	result := r.db.Limit(limit).Offset(offset).Order("email asc").Find(&data)
+	result := r.db.Model(&data).Limit(limit).Offset(offset).Order("email asc").Find(&data)
 
 	if result.Error != nil {
 		return nil, errors.New("failed obtain datas")

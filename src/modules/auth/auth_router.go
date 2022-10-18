@@ -1,17 +1,18 @@
 package auth
 
 import (
-	"github.com/gorilla/mux"
+	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 )
 
-func New(rt *mux.Router, db *gorm.DB) {
-	route := rt.PathPrefix("/").Subrouter()
+func New(rt *gin.Engine, db *gorm.DB) {
 	repo := NewRepo(db)
 	svc := NewService(repo)
 	ctrl := NewCtrl(svc)
 
-	route.HandleFunc("/login", ctrl.SignIn).Methods("POST")
-	route.HandleFunc("/register", ctrl.Register).Methods("POST")
-
+	route := rt.Group("")
+	{
+		route.POST("/login", ctrl.SignIn)
+		route.POST("/register", ctrl.Register)
+	}
 }

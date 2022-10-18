@@ -2,11 +2,11 @@ package auth
 
 import (
 	"encoding/json"
-	"net/http"
 
 	"github.com/adiet95/go-order-api/src/database/models"
 	"github.com/adiet95/go-order-api/src/interfaces"
 	"github.com/adiet95/go-order-api/src/libs"
+	"github.com/gin-gonic/gin"
 )
 
 type user_ctrl struct {
@@ -17,25 +17,25 @@ func NewCtrl(reps interfaces.AuthService) *user_ctrl {
 	return &user_ctrl{reps}
 }
 
-func (u *user_ctrl) SignIn(w http.ResponseWriter, r *http.Request) {
+func (u *user_ctrl) SignIn(c *gin.Context) {
 	var data models.User
 
-	err := json.NewDecoder(r.Body).Decode(&data)
+	err := json.NewDecoder(c.Request.Body).Decode(&data)
 	if err != nil {
 		libs.New(err.Error(), 401, true)
 		return
 	}
 
-	u.repo.Login(data, w).Send(w)
+	u.repo.Login(data).Send(c)
 }
 
-func (u *user_ctrl) Register(w http.ResponseWriter, r *http.Request) {
+func (u *user_ctrl) Register(c *gin.Context) {
 	var data *models.User
 
-	err := json.NewDecoder(r.Body).Decode(&data)
+	err := json.NewDecoder(c.Request.Body).Decode(&data)
 	if err != nil {
 		libs.New(err.Error(), 401, true)
 		return
 	}
-	u.repo.Register(data).Send(w)
+	u.repo.Register(data).Send(c)
 }

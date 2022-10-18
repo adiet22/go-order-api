@@ -2,13 +2,13 @@ package order
 
 import (
 	"encoding/json"
-	"net/http"
 	"strconv"
 	"strings"
 
 	"github.com/adiet95/go-order-api/src/database/models"
 	"github.com/adiet95/go-order-api/src/interfaces"
 	"github.com/adiet95/go-order-api/src/libs"
+	"github.com/gin-gonic/gin"
 )
 
 type order_ctrl struct {
@@ -19,62 +19,67 @@ func NewCtrl(reps interfaces.OrderService) *order_ctrl {
 	return &order_ctrl{svc: reps}
 }
 
-func (re *order_ctrl) GetAll(w http.ResponseWriter, r *http.Request) {
-	v := r.URL.Query().Get("limit")
+func (re *order_ctrl) GetAll(c *gin.Context) {
+	v := c.Request.URL.Query().Get("limit")
 	limit, _ := strconv.Atoi(v)
 
-	val := r.URL.Query().Get("offset")
+	val := c.Request.URL.Query().Get("offset")
 	offset, _ := strconv.Atoi(val)
 
-	re.svc.GetAll(limit, offset).Send(w)
+	re.svc.GetAll(limit, offset).Send(c)
 }
 
-func (re *order_ctrl) Add(w http.ResponseWriter, r *http.Request) {
-	claim_user := r.Context().Value("email")
-	email := claim_user.(string)
+func (re *order_ctrl) Add(c *gin.Context) {
+	claim_user, exist := c.Get("email")
+	if !exist {
+		libs.New("claim user is not exist", 400, true)
+		return
+	}
 
 	var data models.Order
-	err := json.NewDecoder(r.Body).Decode(&data)
+	err := json.NewDecoder(c.Request.Body).Decode(&data)
 	if err != nil {
 		libs.New(err.Error(), 400, true)
 		return
 	}
-	re.svc.Add(&data, email).Send(w)
+	re.svc.Add(&data, claim_user.(string)).Send(c)
 }
 
-func (re *order_ctrl) Update(w http.ResponseWriter, r *http.Request) {
-	claim_user := r.Context().Value("email")
-	email := claim_user.(string)
+func (re *order_ctrl) Update(c *gin.Context) {
+	claim_user, exist := c.Get("email")
+	if !exist {
+		libs.New("claim user is not exist", 400, true)
+		return
+	}
 
-	val := r.URL.Query().Get("id")
+	email := claim_user.(string)
+	val := c.Request.URL.Query().Get("id")
 	v, _ := strconv.Atoi(val)
 
 	var datas models.Order
-	err := json.NewDecoder(r.Body).Decode(&datas)
+	err := json.NewDecoder(c.Request.Body).Decode(&datas)
 	if err != nil {
 		libs.New(err.Error(), 400, true)
 		return
 	}
-	re.svc.Update(&datas, v, email).Send(w)
+	re.svc.Update(&datas, v, email).Send(c)
 }
 
-func (re *order_ctrl) Delete(w http.ResponseWriter, r *http.Request) {
-
-	val := r.URL.Query().Get("id")
+func (re *order_ctrl) Delete(c *gin.Context) {
+	val := c.Request.URL.Query().Get("id")
 	v, _ := strconv.Atoi(val)
 
-	re.svc.Delete(v).Send(w)
+	re.svc.Delete(v).Send(c)
 }
 
-func (re *order_ctrl) Search(w http.ResponseWriter, r *http.Request) {
-
-	val := r.URL.Query().Get("name")
+func (re *order_ctrl) Search(c *gin.Context) {
+	val := c.Request.URL.Query().Get("name")
 	v := strings.ToLower(val)
-	re.svc.Search(v).Send(w)
+	re.svc.Search(v).Send(c)
 }
 
-func (re *order_ctrl) SearchId(w http.ResponseWriter, r *http.Request) {
-	val := r.URL.Query().Get("id")
+func (re *order_ctrl) SearchId(c *gin.Context) {
+	val := c.Request.URL.Query().Get("id")
 	v, _ := strconv.Atoi(val)
-	re.svc.SearchId(v).Send(w)
+	re.svc.SearchId(v).Send(c)
 }

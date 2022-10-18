@@ -2,7 +2,8 @@ package libs
 
 import (
 	"encoding/json"
-	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
 type Response struct {
@@ -13,16 +14,15 @@ type Response struct {
 	Description interface{} `json:"description,omitempty"`
 }
 
-func (res *Response) Send(w http.ResponseWriter) {
-	w.Header().Set("Content-Type", "application/json")
+func (res *Response) Send(c *gin.Context) {
+	c.Writer.Header().Set("Content-Type", "application/json")
 
 	if res.IsError {
-		w.WriteHeader(res.Code)
+		c.Writer.WriteHeader(res.Code)
 	}
-
-	err := json.NewEncoder(w).Encode(res)
+	err := json.NewEncoder(c.Writer).Encode(res)
 	if err != nil {
-		w.Write([]byte("Error When Encode respone"))
+		c.Writer.Write([]byte("Error When Encode respone"))
 	}
 }
 

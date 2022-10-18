@@ -2,21 +2,16 @@ package routers
 
 import (
 	"errors"
-	"net/http"
 
 	"github.com/adiet95/go-order-api/src/database"
 	auth "github.com/adiet95/go-order-api/src/modules/auth"
 	"github.com/adiet95/go-order-api/src/modules/order"
 	"github.com/adiet95/go-order-api/src/modules/users"
-	"github.com/gorilla/mux"
+	"github.com/gin-gonic/gin"
 )
 
-func New() (*mux.Router, error) {
-	mainRoute := mux.NewRouter()
-	mux := http.NewServeMux()
-	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "application/json")
-	})
+func New() (*gin.Engine, error) {
+	mainRoute := gin.Default()
 
 	db, err := database.New()
 	if err != nil {

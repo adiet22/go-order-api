@@ -40,7 +40,6 @@ func (re *auth_repo) RegisterEmail(data *models.User) (*models.User, error) {
 		return nil, errors.New("email registered, go to login")
 	}
 
-	data.Role = "user"
 	r := re.db.Create(data)
 	if r.Error != nil {
 		return nil, errors.New("failled to obtain data")

@@ -1,8 +1,6 @@
 package auth
 
 import (
-	"net/http"
-
 	"github.com/adiet95/go-order-api/src/database/models"
 	"github.com/adiet95/go-order-api/src/interfaces"
 	"github.com/adiet95/go-order-api/src/libs"
@@ -19,7 +17,7 @@ func NewService(reps interfaces.AuthRepo) *auth_service {
 	return &auth_service{reps}
 }
 
-func (u auth_service) Login(body models.User, w http.ResponseWriter) *libs.Response {
+func (u auth_service) Login(body models.User) *libs.Response {
 	checkRegist := libs.Validation(body.Email, body.Password)
 	if checkRegist != nil {
 		return libs.New(checkRegist.Error(), 400, true)
@@ -37,7 +35,6 @@ func (u auth_service) Login(body models.User, w http.ResponseWriter) *libs.Respo
 	if err != nil {
 		return libs.New(err.Error(), 401, true)
 	}
-	w.Header().Set("Access", theToken)
 
 	return libs.New(token_response{Tokens: theToken}, 200, false)
 }
@@ -54,6 +51,7 @@ func (u auth_service) Register(body *models.User) *libs.Response {
 	}
 
 	body.Password = hassPass
+	body.Role = "user"
 	result, err := u.repo.RegisterEmail(body)
 	if err != nil {
 		return libs.New("email already registered, please login", 401, true)

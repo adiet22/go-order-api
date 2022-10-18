@@ -1,8 +1,6 @@
 package interfaces
 
 import (
-	"net/http"
-
 	"github.com/adiet95/go-order-api/src/database/models"
 	"github.com/adiet95/go-order-api/src/libs"
 )
@@ -13,6 +11,6 @@ type AuthRepo interface {
 }
 
 type AuthService interface {
-	Login(body models.User, w http.ResponseWriter) *libs.Response
+	Login(body models.User) *libs.Response
 	Register(body *models.User) *libs.Response
 }
