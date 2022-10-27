@@ -3,11 +3,9 @@ module github.com/adiet95/go-order-api
 go 1.18
 
 require (
+	github.com/gin-gonic/gin v1.8.1
 	github.com/go-gormigrate/gormigrate/v2 v2.0.2
 	github.com/golang-jwt/jwt v3.2.2+incompatible
-	github.com/gorilla/handlers v1.5.1
-	github.com/gorilla/mux v1.8.0
-	github.com/gorilla/schema v1.2.0
 	github.com/joho/godotenv v1.4.0
 	github.com/spf13/cobra v1.6.0
 	github.com/stretchr/testify v1.8.0
@@ -18,9 +16,7 @@ require (
 
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
-	github.com/felixge/httpsnoop v1.0.3 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
-	github.com/gin-gonic/gin v1.8.1 // indirect
 	github.com/go-playground/locales v0.14.0 // indirect
 	github.com/go-playground/universal-translator v0.18.0 // indirect
 	github.com/go-playground/validator/v10 v10.11.1 // indirect

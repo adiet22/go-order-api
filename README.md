@@ -46,24 +46,24 @@ go run . migrate -d //for rollback
 
 ## 🛠️ Installation Steps
 
-1. Make root folder in your Gopath 
-```
-github.com/adiet95/
-```
-
-2. Clone the repository inside the folder that was created "github.com/adiet95/"
+1. Clone the repository
 
 ```bash
-git clone git@github.com:adiet95/go-order-api.git
+https://github.com/adiet95/go-order-api.git
 ```
 
-3. Install dependencies
+2. Install dependencies
 
 ```bash
 go mod tidy
 ```
+> Wait a minute, if still error run 
 
-4. Add Env
+```bash
+go mod vendor
+```
+
+3. Add Env File
 
 ```sh
   DB_USER = Your DB User
@@ -74,7 +74,7 @@ go mod tidy
   PORT = Your Port
 ```
 
-5. Database Migration and Rollback
+4. Database Migration and Rollback
 
 ```bash
 go run main.go migrate --up //for database migration table
@@ -82,7 +82,7 @@ go run main.go migrate --up //for database migration table
 go run main.go migrate --down //for rollback the database
 ```
 
-6. Seeding data admin
+5. Seeding data admin
 
 ```bash
 go run . seed
@@ -95,7 +95,7 @@ _Purpose to login as Admin's Role_
 }
 ```
 
-7. Run the app
+6. Run the app
 
 ```bash
 go run . serve

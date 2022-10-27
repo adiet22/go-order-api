@@ -41,7 +41,6 @@ func (re *order_ctrl) Add(c *gin.Context) {
 	if err != nil {
 		libs.New(err.Error(), 400, true)
 		c.Abort()
-
 	}
 	re.svc.Add(&data, claim_user.(string)).Send(c)
 }
@@ -51,7 +50,6 @@ func (re *order_ctrl) Update(c *gin.Context) {
 	if !exist {
 		libs.New("claim user is not exist", 400, true)
 		c.Abort()
-
 	}
 
 	email := claim_user.(string)
@@ -63,7 +61,6 @@ func (re *order_ctrl) Update(c *gin.Context) {
 	if err != nil {
 		libs.New(err.Error(), 400, true)
 		c.Abort()
-
 	}
 	re.svc.Update(&datas, v, email).Send(c)
 }
